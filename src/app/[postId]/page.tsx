@@ -1,5 +1,4 @@
 import { getPostById, getPostsComments } from "@/api/posts.api";
-import { getUserById } from "@/api/users.api";
 import BackButton from "@/components/ui/BackButton";
 
 export default async function PostDetail({
@@ -8,7 +7,6 @@ export default async function PostDetail({
   params: { postId: string };
 }) {
   const post = await getPostById(postId);
-  const user = await getUserById(post.user_id);
   const comments = await getPostsComments(Number(postId));
 
   return (
@@ -18,7 +16,6 @@ export default async function PostDetail({
         <div className="bg-white p-6 rounded-sm mt-5">
           <div className="space-y-2">
             <h1 className="text-2xl font-bold">{post.title}</h1>
-            <span className="text-sm text-gray-400">{user.name}</span>
             <p className="text-base text-gray-500 block">{post.body}</p>
           </div>
 
